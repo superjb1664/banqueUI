@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Avis index{% endblock %}
+
+{% block menu %}
+    {% import 'macro/macroMenu.html.twig' as macroMenu %}
+    {{ macroMenu.menu('Ma banque',5) }}
+{% endblock %}
+
+{% block body %}
+    <h1>Avis index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Titre</th>
+                <th>Message</th>
+                <th>Note</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for avi in avis %}
+            <tr>
+                <td>{{ avi.id }}</td>
+                <td>{{ avi.date ? avi.date|date('Y-m-d') : '' }}</td>
+                <td>{{ avi.titre }}</td>
+                <td>{{ avi.message }}</td>
+                <td>{{ avi.note }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    <div style="display: flex;flex-wrap: nowrap; align-content: center;
+    justify-content: center; align-items: center;">
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+    </div>
+{% endblock %}
