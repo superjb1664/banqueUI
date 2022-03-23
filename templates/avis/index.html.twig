@@ -8,12 +8,11 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Avis index</h1>
+    <h1>Nos recommandations </h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Date</th>
                 <th>Titre</th>
                 <th>Message</th>
@@ -23,7 +22,6 @@
         <tbody>
         {% for avi in avis %}
             <tr>
-                <td>{{ avi.id }}</td>
                 <td>{{ avi.date ? avi.date|date('Y-m-d') : '' }}</td>
                 <td>{{ avi.titre }}</td>
                 <td>{{ avi.message }}</td>
@@ -31,7 +29,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="5">Il n'ya pas encore d'avis pour notre banque !</td>
             </tr>
         {% endfor %}
         </tbody>
@@ -41,8 +39,38 @@
     <div style="display: flex;flex-wrap: nowrap; align-content: center;
     justify-content: center; align-items: center;">
     {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-    {{ form_end(form) }}
+        <table>
+            <tr>
+                <td>
+        {{ form_label(form.titre) }}
+                </td>
+                <td>
+        {{ form_widget(form.titre) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.message) }}
+                </td>
+                <td>
+                    {{ form_widget(form.message) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.note) }}
+                </td>
+                <td>
+                    {{ form_widget(form.note) }}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button class="btn">{{ button_label|default('Enregistrer mon avis') }}</button>
+
+                </td>
+            </tr>
+        </table>
+        {{ form_end(form) }}
     </div>
 {% endblock %}
