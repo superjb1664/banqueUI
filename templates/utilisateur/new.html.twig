@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Utilisateur{% endblock %}
+
+{% block menu %}
+    {% import 'macro/macroMenu.html.twig' as macroMenu %}
+    {{ macroMenu.menu('Ma banque',5) }}
+{% endblock %}
+
+{% block body %}
+    <h1>Créer un nouvel utilisateur</h1>
+
+    {{ include('utilisateur/_form.html.twig') }}
+
+    <a href="{{ path('app_utilisateur_index') }}">Retour à la liste</a>
+{% endblock %}
